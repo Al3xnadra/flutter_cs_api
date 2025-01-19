@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cs_api/features/responsive_layout.dart';
+import 'package:flutter_cs_api/features/skins/category_skin/page/category_skin_page.dart';
 
 class StartPage extends StatelessWidget {
   const StartPage({
@@ -73,32 +74,38 @@ class StartItem extends StatelessWidget {
         : width < 1200
             ? 35.0
             : 35.0;
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
-      padding: EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: Color(0xFF2D2D2D),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image(
-            height: imageSize,
-            image: NetworkImage(imageUrl),
-          ),
-          SizedBox(
-            width: 20,
-          ),
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
-              color: const Color(0xFF057CDE),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => CategorySkinPage()));
+      },
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 10),
+        padding: EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: Color(0xFF2D2D2D),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image(
+              height: imageSize,
+              image: NetworkImage(imageUrl),
             ),
-          ),
-        ],
+            SizedBox(
+              width: 20,
+            ),
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: fontSize,
+                fontWeight: FontWeight.bold,
+                color: const Color(0xFF057CDE),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
