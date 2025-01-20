@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cs_api/app/injection/injection_container.dart';
 import 'package:flutter_cs_api/features/skins/category_skin/page/category_skin_page.dart';
 import 'package:flutter_cs_api/features/skins/select_skin/page/select_skin_page.dart';
 import 'package:flutter_cs_api/features/skins/skin_details/page/skin_details_page.dart';
@@ -6,6 +7,7 @@ import 'package:flutter_cs_api/features/start/page/start_page.dart';
 import 'package:go_router/go_router.dart';
 
 void main() {
+  configureDependencies();
   runApp(const MainApp());
 }
 
