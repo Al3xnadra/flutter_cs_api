@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cs_api/features/skins/category_skin/widgets/category_list.dart';
-import 'package:flutter_cs_api/features/skins/select_skin/page/select_skin_page.dart';
+import 'package:go_router/go_router.dart';
 
 class CategorySkinPage extends StatelessWidget {
   CategorySkinPage({super.key});
@@ -84,8 +84,7 @@ class CategoryWeaponGridView extends StatelessWidget {
       children: List.generate(selectedCategory.weapons.length, (index) {
         return GestureDetector(
           onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => SelectSkinPage()));
+            context.go('/selectSkin');
           },
           child: Container(
             decoration: BoxDecoration(

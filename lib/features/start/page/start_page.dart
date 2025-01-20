@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cs_api/features/responsive_layout.dart';
-import 'package:flutter_cs_api/features/skins/category_skin/page/category_skin_page.dart';
+import 'package:go_router/go_router.dart';
 
 class StartPage extends StatelessWidget {
   const StartPage({
@@ -76,8 +76,7 @@ class StartItem extends StatelessWidget {
             : 35.0;
     return GestureDetector(
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => CategorySkinPage()));
+        context.go('/category');
       },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 10),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_cs_api/features/skins/skin_details/page/skin_details_page.dart';
+import 'package:go_router/go_router.dart';
 
 class SelectSkinPage extends StatelessWidget {
   const SelectSkinPage({super.key});
@@ -46,10 +46,7 @@ class SelectSkinPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20)),
                   child: GestureDetector(
                     onTap: () {
-                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SkinDetailsPage()));
+                      context.go('/skinDetails');
                     },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
