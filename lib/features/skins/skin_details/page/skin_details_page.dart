@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cs_api/domain/models/skin_model.dart';
 
 class SkinDetailsPage extends StatelessWidget {
-  const SkinDetailsPage({super.key});
+  const SkinDetailsPage({
+    super.key,
+    required this.skin,
+  });
+
+  final SkinModel skin;
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +20,16 @@ class SkinDetailsPage extends StatelessWidget {
             : EdgeInsets.symmetric(vertical: 50, horizontal: 50);
 
     final content = width < 600
-        ? _ContentForMobile()
+        ? _ContentForMobile(
+            skin: skin,
+          )
         : width < 1200
-            ? _ContentForWeb()
-            : _ContentForWeb();
+            ? _ContentForWeb(
+                skin: skin,
+              )
+            : _ContentForWeb(
+                skin: skin,
+              );
     return Scaffold(
       backgroundColor: Color(0xFF1A1A1A),
       body: Padding(
@@ -29,6 +41,9 @@ class SkinDetailsPage extends StatelessWidget {
 }
 
 class _ContentForMobile extends StatelessWidget {
+  final SkinModel skin;
+
+  const _ContentForMobile({required this.skin});
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -47,7 +62,7 @@ class _ContentForMobile extends StatelessWidget {
           height: 10,
         ),
         Text(
-          'AK-47 | Jaguar',
+          skin.name,
           style: TextStyle(
               fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
         ),
@@ -172,6 +187,9 @@ class _ContentForMobile extends StatelessWidget {
 }
 
 class _ContentForWeb extends StatelessWidget {
+  final SkinModel skin;
+
+  const _ContentForWeb({required this.skin});
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -196,7 +214,7 @@ class _ContentForWeb extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'AK-47 | Jaguar',
+                      skin.name,
                       style: TextStyle(
                           fontSize: 32,
                           fontWeight: FontWeight.bold,

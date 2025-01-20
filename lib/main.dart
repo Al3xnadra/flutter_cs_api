@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cs_api/app/injection/injection_container.dart';
+import 'package:flutter_cs_api/domain/models/skin_model.dart';
 import 'package:flutter_cs_api/features/skins/category_skin/page/category_skin_page.dart';
 import 'package:flutter_cs_api/features/skins/select_skin/page/select_skin_page.dart';
 import 'package:flutter_cs_api/features/skins/skin_details/page/skin_details_page.dart';
@@ -38,13 +39,20 @@ final _router = GoRouter(
     ),
     GoRoute(
       name: 'selectSkin',
-      path: '/selectSkin',
-      builder: (context, state) => SelectSkinPage(),
+      path: '/selectSkin/:name',
+      builder: (context, state) => SelectSkinPage(
+        name: state.pathParameters['name']!,
+      ),
     ),
     GoRoute(
-      name: 'skinDetails',
-      path: '/skinDetails',
-      builder: (context, state) => SkinDetailsPage(),
-    ),
+        name: 'skinDetails',
+        path: '/skinDetails/:name',
+        builder: (context, state) {
+          final skin = state.extra as SkinModel;
+
+          return SkinDetailsPage(
+            skin: skin,
+          );
+        }),
   ],
 );
