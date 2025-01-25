@@ -14,7 +14,7 @@ class SkinDetailsPage extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
 
     final padding = width < 600
-        ? EdgeInsets.symmetric(vertical: 30, horizontal: 50)
+        ? EdgeInsets.symmetric(vertical: 30, horizontal: 10)
         : width < 1200
             ? EdgeInsets.symmetric(vertical: 30, horizontal: 30)
             : EdgeInsets.symmetric(vertical: 50, horizontal: 50);
@@ -132,7 +132,7 @@ class _ContentForMobile extends StatelessWidget {
                           color: Colors.white, fontWeight: FontWeight.bold),
                     ),
                     Image.network(
-                        'https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/set_icons/set_esports_iii_png.png '),
+                        'https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/set_icons/set_esports_iii_png.png'),
                     Text(
                       'The eSports 2014 Summer Collection',
                       style: TextStyle(color: Colors.white),
@@ -204,8 +204,7 @@ class _ContentForWeb extends StatelessWidget {
               ),
               height: 289,
               width: 289,
-              child: Image.network(
-                  'https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/default_generated/weapon_ak47_cu_panther_ak47_light_png.png'),
+              child: Image.network(skin.image),
             ),
             Flexible(
               child: Padding(
@@ -242,8 +241,7 @@ class _ContentForWeb extends StatelessWidget {
                                   color: Colors.white),
                             ),
                             TextSpan(
-                              text:
-                                  'Powerful and reliable, the AK-47 is one of the most popular assault rifles in the world. It is most deadly in short, controlled bursts of fire. It has been custom painted with the image of a panther over a tiger camo background.',
+                              text: skin.description,
                               style: TextStyle(
                                 color: Colors.white,
                                 height: 1.5,
@@ -286,10 +284,9 @@ class _ContentForWeb extends StatelessWidget {
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold),
                           ),
-                          Image.network(
-                              'https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/weapon_cases/crate_esports_2014_summer_png.png'),
+                          Image.network(skin.crates.first.image),
                           Text(
-                            'eSports 2014 Summer Case',
+                            skin.crates.first.name,
                             style: TextStyle(color: Colors.white),
                           ),
                         ],
@@ -308,10 +305,9 @@ class _ContentForWeb extends StatelessWidget {
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold),
                           ),
-                          Image.network(
-                              'https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/set_icons/set_esports_iii_png.png '),
+                          Image.network(skin.collections!.first.image),
                           Text(
-                            'The eSports 2014 Summer Collection',
+                            skin.collections!.first.name,
                             style: TextStyle(color: Colors.white),
                           ),
                         ],
@@ -338,11 +334,11 @@ class _ContentForWeb extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '0',
+                          skin.minFloat.toString(),
                           style: TextStyle(color: Colors.white),
                         ),
                         Text(
-                          '1',
+                          skin.maxFloat.toString(),
                           style: TextStyle(color: Colors.white),
                         ),
                       ],
