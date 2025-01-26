@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cs_api/domain/models/skin_model.dart';
+import 'package:flutter_cs_api/features/skins/skin_details/widgets/skin_crates_collection.dart';
+import 'package:flutter_cs_api/features/skins/skin_details/widgets/skin_float.dart';
+import 'package:flutter_cs_api/features/skins/skin_details/widgets/skin_image.dart';
+import 'package:flutter_cs_api/features/skins/skin_details/widgets/skin_info.dart';
 
 class SkinDetailsPage extends StatelessWidget {
   const SkinDetailsPage({
@@ -46,142 +50,18 @@ class _ContentForMobile extends StatelessWidget {
   const _ContentForMobile({required this.skin});
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            color: Color(0xFFeb4b4b),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          height: 289,
-          width: 289,
-          child: Image.network(
-              'https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/default_generated/weapon_ak47_cu_panther_ak47_light_png.png'),
+    return SingleChildScrollView(
+      child: Center(
+        child: Wrap(
+          runSpacing: 10,
+          children: [
+            SkinImage(skin: skin),
+            SkinInfo(skin: skin),
+            SkinCratesCollection(skin: skin),
+            SkinFloat(skin: skin),
+          ],
         ),
-        SizedBox(
-          height: 10,
-        ),
-        Text(
-          skin.name,
-          style: TextStyle(
-              fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Divider(
-          color: Colors.white,
-          thickness: 4,
-        ),
-        SizedBox(
-          height: 15,
-        ),
-        Text.rich(
-          TextSpan(
-            children: [
-              TextSpan(
-                text: 'Description: ',
-                style:
-                    TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-              ),
-              TextSpan(
-                text:
-                    'Powerful and reliable, the AK-47 is one of the most popular assault rifles in the world. It is most deadly in short, controlled bursts of fire. It has been custom painted with the image of a panther over a tiger camo background.',
-                style: TextStyle(color: Colors.white),
-              ),
-            ],
-          ),
-        ),
-        Container(
-          padding: EdgeInsets.all(10),
-          margin: EdgeInsets.only(top: 15),
-          decoration: BoxDecoration(
-            color: Color(0xFF2D2D2D),
-            borderRadius: BorderRadius.circular(15),
-          ),
-          child: Row(
-            children: [
-              Flexible(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Crates:',
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold),
-                    ),
-                    Image.network(
-                        'https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/weapon_cases/crate_esports_2014_summer_png.png'),
-                    Text(
-                      'eSports 2014 Summer Case',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              Flexible(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Collection:',
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold),
-                    ),
-                    Image.network(
-                        'https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/set_icons/set_esports_iii_png.png'),
-                    Text(
-                      'The eSports 2014 Summer Collection',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-        Container(
-          padding: EdgeInsets.all(10),
-          margin: EdgeInsets.only(top: 15),
-          decoration: BoxDecoration(
-            color: Color(0xFF2D2D2D),
-            borderRadius: BorderRadius.circular(15),
-          ),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    '0',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  Text(
-                    '1',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ],
-              ),
-              Stack(
-                children: [
-                  Container(
-                    height: 3,
-                    decoration: BoxDecoration(color: Colors.red),
-                  ),
-                  Container(
-                    height: 3,
-                    width: 100,
-                    decoration: BoxDecoration(color: Colors.green),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ],
+      ),
     );
   }
 }
@@ -197,64 +77,12 @@ class _ContentForWeb extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              decoration: BoxDecoration(
-                color: Color(0xFFeb4b4b),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              height: 289,
-              width: 289,
-              child: Image.network(skin.image),
-            ),
+            SkinImage(skin: skin),
             Flexible(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      skin.name,
-                      style: TextStyle(
-                          fontSize: 32,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    Divider(
-                      color: Colors.white,
-                      thickness: 4,
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 20),
-                      child: Text.rich(
-                        TextSpan(
-                          children: [
-                            TextSpan(
-                              text: 'Description: ',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
-                            ),
-                            TextSpan(
-                              text: skin.description,
-                              style: TextStyle(
-                                color: Colors.white,
-                                height: 1.5,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+                child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: SkinInfo(skin: skin),
+            )),
           ],
         ),
         SizedBox(
@@ -262,104 +90,12 @@ class _ContentForWeb extends StatelessWidget {
         ),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Flexible(
-              child: Container(
-                width: double.infinity,
-                padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: Color(0xFF2D2D2D),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Row(
-                  children: [
-                    Flexible(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Crates:',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Image.network(skin.crates.first.image),
-                          Text(
-                            skin.crates.first.name,
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Flexible(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Collection:',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Image.network(skin.collections!.first.image),
-                          Text(
-                            skin.collections!.first.name,
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            SkinCratesCollection(skin: skin),
             SizedBox(
               width: 20,
             ),
-            Flexible(
-              child: Container(
-                width: double.infinity,
-                padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: Color(0xFF2D2D2D),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          skin.minFloat.toString(),
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        Text(
-                          skin.maxFloat.toString(),
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
-                    ),
-                    Stack(
-                      children: [
-                        Container(
-                          height: 3,
-                          decoration: BoxDecoration(color: Colors.red),
-                        ),
-                        Container(
-                          height: 3,
-                          width: 100,
-                          decoration: BoxDecoration(color: Colors.green),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            SkinFloat(skin: skin)
           ],
         ),
       ],
