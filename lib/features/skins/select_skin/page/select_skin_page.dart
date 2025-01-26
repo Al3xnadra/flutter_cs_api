@@ -57,7 +57,7 @@ class SelectSkinPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20)),
                         child: GestureDetector(
                           onTap: () {
-                            context.go('/skinDetails/${skin.name}',
+                            context.push('/skinDetails/${skin.name}',
                                 extra: skin);
                           },
                           child: Column(

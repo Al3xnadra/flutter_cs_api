@@ -4,6 +4,7 @@ import 'package:flutter_cs_api/features/skins/skin_details/widgets/skin_crates_c
 import 'package:flutter_cs_api/features/skins/skin_details/widgets/skin_float.dart';
 import 'package:flutter_cs_api/features/skins/skin_details/widgets/skin_image.dart';
 import 'package:flutter_cs_api/features/skins/skin_details/widgets/skin_info.dart';
+import 'package:go_router/go_router.dart';
 
 class SkinDetailsPage extends StatelessWidget {
   const SkinDetailsPage({
@@ -36,6 +37,23 @@ class SkinDetailsPage extends StatelessWidget {
               );
     return Scaffold(
       backgroundColor: Color(0xFF1A1A1A),
+      appBar: width < 600
+          ? AppBar(
+              backgroundColor: Color(0xFF1A1A1A),
+              leading: IconButton(
+                onPressed: () {
+                  context.pop();
+                },
+                icon: Icon(
+                  Icons.arrow_back_ios_new_rounded,
+                  color: Colors.white,
+                ),
+              ),
+            )
+          : PreferredSize(
+              preferredSize: Size(width, 0),
+              child: SizedBox(),
+            ),
       body: Padding(
         padding: padding,
         child: content,

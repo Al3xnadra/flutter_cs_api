@@ -84,7 +84,7 @@ class CategoryWeaponGridView extends StatelessWidget {
       children: List.generate(selectedCategory.weapons.length, (index) {
         return GestureDetector(
           onTap: () {
-            context.go('/selectSkin/${selectedCategory.weapons[index].name}');
+            context.push('/selectSkin/${selectedCategory.weapons[index].name}');
           },
           child: Container(
             decoration: BoxDecoration(

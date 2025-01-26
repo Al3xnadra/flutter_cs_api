@@ -76,7 +76,7 @@ class StartItem extends StatelessWidget {
             : 35.0;
     return GestureDetector(
       onTap: () {
-        context.go('/category');
+        context.push('/category');
       },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 10),
