@@ -26,28 +26,57 @@ class SkinInfo extends StatelessWidget {
         SizedBox(
           height: 15,
         ),
-        Padding(
-          padding: const EdgeInsets.only(right: 20),
+        SkinDescription(description: skin.description)
+      ],
+    );
+  }
+}
+
+class SkinDescription extends StatelessWidget {
+  const SkinDescription({super.key, required this.description});
+
+  final String description;
+
+  @override
+  Widget build(BuildContext context) {
+    final desc = description
+        .replaceAll('\\n', '\n')
+        .replaceAll('<i>', '')
+        .replaceAll('</i>', '');
+
+    final paragraphs = desc.split('\n').where((s) => s.isNotEmpty).toList();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: paragraphs.map((paragraph) {
+        final isQuote = description.contains('<i>$paragraph</i>');
+
+        return Padding(
+          padding: EdgeInsets.only(right: 20, bottom: 20),
           child: Text.rich(
             TextSpan(
               children: [
                 TextSpan(
-                  text: 'Description: ',
+                  text: isQuote ? 'Flavor: ' : 'Description: ',
                   style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.white),
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    height: 1.5,
+                  ),
                 ),
                 TextSpan(
-                  text: skin.description,
+                  text: paragraph,
                   style: TextStyle(
                     color: Colors.white,
                     height: 1.5,
+                    fontStyle: isQuote ? FontStyle.italic : FontStyle.normal,
                   ),
                 ),
               ],
             ),
           ),
-        ),
-      ],
+        );
+      }).toList(),
     );
   }
 }

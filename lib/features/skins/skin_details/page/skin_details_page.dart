@@ -69,16 +69,14 @@ class _ContentForMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Center(
-        child: Wrap(
-          runSpacing: 10,
-          children: [
-            SkinImage(skin: skin),
-            SkinInfo(skin: skin),
-            SkinCratesCollection(skin: skin),
-            SkinFloat(skin: skin),
-          ],
-        ),
+      child: Wrap(
+        runSpacing: 10,
+        children: [
+          Center(child: SkinImage(skin: skin)),
+          SkinInfo(skin: skin),
+          SkinCratesCollection(skin: skin),
+          SkinFloat(skin: skin),
+        ],
       ),
     );
   }
