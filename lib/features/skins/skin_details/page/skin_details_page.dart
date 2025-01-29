@@ -107,7 +107,7 @@ class _ContentForWeb extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SkinCratesCollection(skin: skin),
+            if (skin.collections!.isNotEmpty) SkinCratesCollection(skin: skin),
             SizedBox(
               width: 20,
             ),
