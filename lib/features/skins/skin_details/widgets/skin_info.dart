@@ -24,6 +24,25 @@ class SkinInfo extends StatelessWidget {
           thickness: 4,
         ),
         SizedBox(
+          height: 10,
+        ),
+        if (skin.stattrak == true)
+          Text(
+            'StatTrak Available',
+            style: TextStyle(
+              color: Color(0xFFE88D09),
+              fontSize: 18,
+            ),
+          )
+        else
+          Text(
+            'Souvenir Available',
+            style: TextStyle(
+              color: Color(0xFFFFCA0B),
+              fontSize: 18,
+            ),
+          ),
+        SizedBox(
           height: 15,
         ),
         SkinDescription(description: skin.description)
