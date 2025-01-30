@@ -12,6 +12,7 @@ class AppTheme {
     colorScheme: ColorScheme.dark(
       brightness: Brightness.dark,
       primary: ColorsApp.primary,
+      secondary: ColorsApp.backgroundCard,
     ),
     dividerTheme: DividerThemeData(color: ColorsApp.white),
     cardTheme: CardTheme(

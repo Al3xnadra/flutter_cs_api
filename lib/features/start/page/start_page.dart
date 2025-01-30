@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cs_api/app/config/theme/app_style.dart';
-import 'package:flutter_cs_api/features/responsive_layout.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_cs_api/app/config/responsive_layout.dart';
+import 'package:flutter_cs_api/features/start/widgets/list_navigation.dart';
+import 'package:flutter_cs_api/features/start/widgets/start_item.dart';
 
 class StartPage extends StatelessWidget {
   const StartPage({
@@ -44,68 +45,3 @@ class _StartContent extends StatelessWidget {
     );
   }
 }
-
-class StartItem extends StatelessWidget {
-  const StartItem({
-    super.key,
-    required this.title,
-    required this.imageUrl,
-  });
-
-  final String title, imageUrl;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        context.push('/category');
-      },
-      child: Container(
-        margin: EdgeInsets.symmetric(vertical: 10),
-        padding: EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: AppStyle.getSecondaryColor(context),
-          borderRadius: AppStyle.borderRadiusL,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image(
-              height: AppStyle.imageSize(context),
-              image: NetworkImage(imageUrl),
-            ),
-            SizedBox(
-              width: 20,
-            ),
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: AppStyle.fontSize(context),
-                fontWeight: FontWeight.bold,
-                color: AppStyle.getPrimaryColor(context),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-List startNavigation = [
-  {
-    'title': 'Skins',
-    'imageUrl':
-        'https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/default_generated/weapon_ak47_cu_panther_ak47_light_png.png',
-  },
-  {
-    'title': 'Agents',
-    'imageUrl':
-        'https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/characters/customplayer_tm_professional_varf5_png.png',
-  },
-  {
-    'title': 'Cases',
-    'imageUrl':
-        'https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/weapon_cases/crate_esports_2014_summer_png.png',
-  },
-];
