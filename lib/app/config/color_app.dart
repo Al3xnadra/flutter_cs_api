@@ -16,7 +16,7 @@ class ColorsApp {
   static var linearMilspecThree = const Color(0xFF2D3F99);
   static var linearRestrictedOne = const Color(0xFF8847FF);
   static var linearRestrictedTwo = const Color(0xFF7435E6);
-  static var linearRestrictedThree = const Color(0xFF3E1192);
+  static var linearRestrictedThree = const Color(0xFF5319BE);
   static var linearClassifiedOne = const Color(0xFFD32CE6);
   static var linearClassifiedTwo = const Color(0xFFA821B8);
   static var linearClassifiedThree = const Color(0xFF831B8E);
