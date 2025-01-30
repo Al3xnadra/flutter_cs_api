@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cs_api/app/config/theme/app_style.dart';
 import 'package:flutter_cs_api/domain/models/skin_model.dart';
 import 'package:flutter_cs_api/features/skins/skin_details/widgets/skin_crates_collection.dart';
 import 'package:flutter_cs_api/features/skins/skin_details/widgets/skin_float.dart';
 import 'package:flutter_cs_api/features/skins/skin_details/widgets/skin_image.dart';
 import 'package:flutter_cs_api/features/skins/skin_details/widgets/skin_info.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_cs_api/features/widgets/appBar_for_mobile.dart';
 
 class SkinDetailsPage extends StatelessWidget {
   const SkinDetailsPage({
@@ -16,47 +17,13 @@ class SkinDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-
-    final padding = width < 600
-        ? EdgeInsets.symmetric(vertical: 30, horizontal: 10)
-        : width < 1200
-            ? EdgeInsets.symmetric(vertical: 30, horizontal: 30)
-            : EdgeInsets.symmetric(vertical: 50, horizontal: 50);
-
-    final content = width < 600
-        ? _ContentForMobile(
-            skin: skin,
-          )
-        : width < 1200
-            ? _ContentForWeb(
-                skin: skin,
-              )
-            : _ContentForWeb(
-                skin: skin,
-              );
     return Scaffold(
-      backgroundColor: Color(0xFF1A1A1A),
-      appBar: width < 600
-          ? AppBar(
-              backgroundColor: Color(0xFF1A1A1A),
-              leading: IconButton(
-                onPressed: () {
-                  context.pop();
-                },
-                icon: Icon(
-                  Icons.arrow_back_ios_new_rounded,
-                  color: Colors.white,
-                ),
-              ),
-            )
-          : PreferredSize(
-              preferredSize: Size(width, 0),
-              child: SizedBox(),
-            ),
+      appBar: PreferredSize(
+          preferredSize: Size.fromHeight(50), child: AppBarForMobile()),
       body: Padding(
-        padding: padding,
-        child: content,
+        padding: AppStyle.padding(context),
+        child: AppStyle.content(context, _ContentForMobile(skin: skin),
+            _ContentForDesktop(skin: skin), _ContentForDesktop(skin: skin)),
       ),
     );
   }
@@ -82,10 +49,10 @@ class _ContentForMobile extends StatelessWidget {
   }
 }
 
-class _ContentForWeb extends StatelessWidget {
+class _ContentForDesktop extends StatelessWidget {
   final SkinModel skin;
 
-  const _ContentForWeb({required this.skin});
+  const _ContentForDesktop({required this.skin});
   @override
   Widget build(BuildContext context) {
     return ListView(

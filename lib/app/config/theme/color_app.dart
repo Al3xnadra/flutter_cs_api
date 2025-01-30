@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
 class ColorsApp {
+  static var background = Color(0xFF1A1A1A);
+  static var backgroundCard = Color(0xFF2D2D2D);
+  static var primary = Color(0xFF057CDE);
+  static var transparent = Colors.transparent;
+
   static var white = const Color(0xFFFFFFFF);
   static var stattrak = const Color(0xFFE88D09);
   static var souvenir = const Color(0xFFFFCA0B);

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cs_api/app/config/theme/app_style.dart';
 import 'package:flutter_cs_api/features/skins/category_skin/widgets/category_list.dart';
+import 'package:flutter_cs_api/features/widgets/appBar_for_mobile.dart';
 import 'package:go_router/go_router.dart';
 
 class CategorySkinPage extends StatelessWidget {
@@ -16,21 +18,11 @@ class CategorySkinPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final columns = width < 600
-        ? 2
-        : width < 1200
-            ? 4
-            : 6;
-    final padding = width < 600
-        ? EdgeInsets.symmetric(vertical: 30, horizontal: 10)
-        : width < 1200
-            ? EdgeInsets.symmetric(vertical: 30, horizontal: 30)
-            : EdgeInsets.symmetric(vertical: 50, horizontal: 50);
     return Scaffold(
-      backgroundColor: Color(0xFF1A1A1A),
+      appBar: PreferredSize(
+          preferredSize: Size.fromHeight(50), child: AppBarForMobile()),
       body: Padding(
-        padding: padding,
+        padding: AppStyle.padding(context),
         child: Column(
           children: [
             Flexible(
@@ -45,11 +37,10 @@ class CategorySkinPage extends StatelessWidget {
                     children: [
                       Text(
                         title,
-                        style:
-                            const TextStyle(fontSize: 32, color: Colors.white),
+                        style: const TextStyle(fontSize: 32),
                       ),
                       CategoryWeaponGridView(
-                          crossAxisCount: columns,
+                          crossAxisCount: AppStyle.categoryColumn(context),
                           selectedCategory:
                               CategoryList.getWeaponCategories()[index])
                     ],
@@ -77,6 +68,7 @@ class CategoryWeaponGridView extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.count(
       padding: const EdgeInsets.only(top: 8),
+      physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       crossAxisCount: crossAxisCount,
       mainAxisSpacing: 10,
@@ -86,18 +78,13 @@ class CategoryWeaponGridView extends StatelessWidget {
           onTap: () {
             context.push('/selectSkin/${selectedCategory.weapons[index].name}');
           },
-          child: Container(
-            decoration: BoxDecoration(
-              color: Color(0xFF2D2D2D),
-              borderRadius: BorderRadius.circular(5),
-            ),
+          child: Card(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.network(selectedCategory.weapons[index].image),
                 Text(
                   selectedCategory.weapons[index].name,
-                  style: TextStyle(color: Colors.white),
                 ),
               ],
             ),

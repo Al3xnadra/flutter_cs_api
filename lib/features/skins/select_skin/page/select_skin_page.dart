@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_cs_api/app/config/color_app.dart';
+import 'package:flutter_cs_api/app/config/theme/color_app.dart';
+import 'package:flutter_cs_api/app/config/theme/app_style.dart';
 import 'package:flutter_cs_api/app/injection/injection_container.dart';
 import 'package:flutter_cs_api/domain/models/skin_model.dart';
 import 'package:flutter_cs_api/features/skins/select_skin/cubit/select_skin_cubit.dart';
+import 'package:flutter_cs_api/features/widgets/appBar_for_mobile.dart';
 import 'package:go_router/go_router.dart';
 
 class SelectSkinPage extends StatelessWidget {
@@ -13,33 +15,23 @@ class SelectSkinPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final columns = width < 600
-        ? 2
-        : width < 1200
-            ? 3
-            : 4;
-    final padding = width < 600
-        ? EdgeInsets.symmetric(vertical: 30, horizontal: 10)
-        : width < 1200
-            ? EdgeInsets.symmetric(vertical: 30, horizontal: 30)
-            : EdgeInsets.symmetric(vertical: 50, horizontal: 50);
     return BlocProvider(
       create: (context) => getIt<SelectSkinCubit>()..getSkinsData(name),
       child: BlocBuilder<SelectSkinCubit, SelectSkinState>(
         builder: (context, state) {
           final skinModel = state.skinModel;
           return Scaffold(
-            backgroundColor: Color(0xFF1A1A1A),
+            appBar: PreferredSize(
+                preferredSize: Size.fromHeight(50), child: AppBarForMobile()),
             body: Padding(
-              padding: padding,
+              padding: AppStyle.padding(context),
               child: ListView(
                 children: [
                   GridView.builder(
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: columns,
+                      crossAxisCount: AppStyle.selectColumn(context),
                       crossAxisSpacing: 20,
                       mainAxisSpacing: 20,
                     ),
@@ -69,13 +61,11 @@ class CardSkin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          color: Color(0xFF2D2D2D), borderRadius: BorderRadius.circular(20)),
-      child: GestureDetector(
-        onTap: () {
-          context.push('/skinDetails/${skin.name}', extra: skin);
-        },
+    return GestureDetector(
+      onTap: () {
+        context.push('/skinDetails/${skin.name}', extra: skin);
+      },
+      child: Card(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -99,7 +89,6 @@ class CardSkin extends StatelessWidget {
             ),
             Text(
               skin.name,
-              style: TextStyle(color: Colors.white),
             ),
           ],
         ),

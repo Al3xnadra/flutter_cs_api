@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cs_api/app/config/theme/app_style.dart';
 import 'package:flutter_cs_api/features/responsive_layout.dart';
 import 'package:go_router/go_router.dart';
 
@@ -10,7 +11,6 @@ class StartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF1A1A1A),
       body: ResponsiveLayout(
         mobile: _StartContent(),
         tablet: _StartContent(
@@ -31,15 +31,8 @@ class _StartContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final padding = width < 600
-        ? EdgeInsets.symmetric(vertical: 30, horizontal: 20)
-        : width < 1200
-            ? EdgeInsets.symmetric(vertical: 30, horizontal: 80)
-            : EdgeInsets.symmetric(vertical: 80, horizontal: 150);
-
     return Padding(
-      padding: padding,
+      padding: AppStyle.startPadding(context),
       child: ListView(
         children: startNavigation
             .map((item) => StartItem(
@@ -63,17 +56,6 @@ class StartItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final imageSize = width < 600
-        ? 80.0
-        : width < 1200
-            ? 130.0
-            : 130.0;
-    final fontSize = width < 600
-        ? 20.0
-        : width < 1200
-            ? 35.0
-            : 35.0;
     return GestureDetector(
       onTap: () {
         context.push('/category');
@@ -82,14 +64,14 @@ class StartItem extends StatelessWidget {
         margin: EdgeInsets.symmetric(vertical: 10),
         padding: EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: Color(0xFF2D2D2D),
-          borderRadius: BorderRadius.circular(20),
+          color: AppStyle.getSecondaryColor(context),
+          borderRadius: AppStyle.borderRadiusL,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image(
-              height: imageSize,
+              height: AppStyle.imageSize(context),
               image: NetworkImage(imageUrl),
             ),
             SizedBox(
@@ -98,9 +80,9 @@ class StartItem extends StatelessWidget {
             Text(
               title,
               style: TextStyle(
-                fontSize: fontSize,
+                fontSize: AppStyle.fontSize(context),
                 fontWeight: FontWeight.bold,
-                color: const Color(0xFF057CDE),
+                color: AppStyle.getPrimaryColor(context),
               ),
             ),
           ],

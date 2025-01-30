@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cs_api/app/config/theme/app_theme.dart';
 import 'package:flutter_cs_api/app/injection/injection_container.dart';
 import 'package:flutter_cs_api/domain/models/skin_model.dart';
 import 'package:flutter_cs_api/features/skins/category_skin/page/category_skin_page.dart';
@@ -18,6 +19,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      theme: AppTheme.darkMode,
       debugShowCheckedModeBanner: false,
       // home: StartPage(),
       routerConfig: _router,

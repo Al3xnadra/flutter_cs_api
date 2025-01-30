@@ -13,14 +13,12 @@ class SkinInfo extends StatelessWidget {
       children: [
         Text(
           skin.name,
-          style: TextStyle(
-              fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
+          style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
         ),
         SizedBox(
           height: 15,
         ),
         Divider(
-          color: Colors.white,
           thickness: 4,
         ),
         SizedBox(
@@ -79,14 +77,12 @@ class SkinDescription extends StatelessWidget {
                   text: isQuote ? 'Flavor: ' : 'Description: ',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
                     height: 1.5,
                   ),
                 ),
                 TextSpan(
                   text: paragraph,
                   style: TextStyle(
-                    color: Colors.white,
                     height: 1.5,
                     fontStyle: isQuote ? FontStyle.italic : FontStyle.normal,
                   ),

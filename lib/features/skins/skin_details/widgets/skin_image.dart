@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_cs_api/app/config/color_app.dart';
+import 'package:flutter_cs_api/app/config/theme/color_app.dart';
 import 'package:flutter_cs_api/domain/models/skin_model.dart';
 
 class SkinImage extends StatelessWidget {
