@@ -11,4 +11,10 @@ class SkinsRepository {
 
     return skinInfo.where((skin) => skin.weapon.name == name).toList();
   }
+
+  Future<List<SkinModel>> skinList() async {
+    final skinInfo = await _skinsRemoteRetrofitDataSource.getSkins();
+
+    return skinInfo;
+  }
 }

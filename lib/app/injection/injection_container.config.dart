@@ -15,6 +15,8 @@ import 'package:flutter_cs_api/data/remote_data_source/skins_remote_data_source.
     as _i687;
 import 'package:flutter_cs_api/domain/repositories/skins_repository.dart'
     as _i665;
+import 'package:flutter_cs_api/features/searchbar/cubit/searchbar_skin_cubit.dart'
+    as _i947;
 import 'package:flutter_cs_api/features/skins/select_skin/cubit/select_skin_cubit.dart'
     as _i364;
 import 'package:get_it/get_it.dart' as _i174;
@@ -42,6 +44,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i687.SkinsRemoteRetrofitDataSource(gh<_i361.Dio>()));
     gh.factory<_i665.SkinsRepository>(
         () => _i665.SkinsRepository(gh<_i687.SkinsRemoteRetrofitDataSource>()));
+    gh.factory<_i947.SearchbarSkinCubit>(
+        () => _i947.SearchbarSkinCubit(gh<_i665.SkinsRepository>()));
     gh.factory<_i364.SelectSkinCubit>(
         () => _i364.SelectSkinCubit(gh<_i665.SkinsRepository>()));
     return this;
