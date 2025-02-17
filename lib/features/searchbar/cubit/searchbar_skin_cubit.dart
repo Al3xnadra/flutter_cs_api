@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_cs_api/domain/models/skin_model.dart';
 import 'package:flutter_cs_api/domain/repositories/skins_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
